@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f3ea">
+    <title>Verity | Live fact-checks</title>
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/room-notes/verity-talk-check.svg">
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <main class="dashboard">
+      <header class="masthead">
+        <div class="brand">
+          <img src="/room-notes/verity-talk-check.svg" alt="" width="34" height="34">
+          <span class="brand-name">Verity</span>
+          <span class="edition">/ &nbsp;Room Notes</span>
+        </div>
+        <button class="guide-button" id="open-guide" type="button" aria-haspopup="dialog">
+          <img src="/room-notes/help.svg" alt="" width="17" height="17">Welcome Guide
+        </button>
+      </header>
+      <section class="session" aria-labelledby="title">
+        <div class="session-copy">
+          <p class="eyebrow">Room session</p>
+          <h1 id="title">Live fact-checks</h1>
+          <p class="intro">Follow the conversation as claims are checked.</p>
+        </div>
+        <button class="demo-button" id="open-demo" type="button" aria-haspopup="dialog">
+          <span class="demo-thumbnail" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M5 2.5v11L14 8z"/></svg>
+          </span>
+          <span class="demo-label">Watch demo <span>Kopi Talk · 47 sec</span></span>
+        </button>
+      </section>
+      <section class="feed" aria-labelledby="feed-heading">
+        <header class="feed-heading">
+          <h2 id="feed-heading">Claim feed</h2>
+          <div class="feed-actions">
+            <p id="count" aria-live="polite">0 checks</p>
+            <span class="feed-order" id="feed-order" hidden>· &nbsp;Latest first</span>
+            <button id="new-checks" type="button" aria-controls="claim-scroll" hidden>New checks ↑</button>
+          </div>
+        </header>
+        <div id="claim-scroll" class="claim-scroll" role="region" aria-label="Scrollable fact-checks" tabindex="0">
+          <div id="empty" class="empty">
+            <span class="empty-icon"><img src="/room-notes/empty-layers.svg" alt="" width="24" height="24"></span>
+            <p class="empty-title">No checks yet</p>
+            <p id="empty-message">Turn on the mic to start a room session.</p>
+          </div>
+          <div id="claims"></div>
+        </div>
+      </section>
+      <footer class="session-footer">
+        <p class="privacy">Live sessions record room audio.</p>
+        <div id="mic-bar" class="mic-bar" aria-label="Room microphone">
+          <div class="mic-status">
+            <span class="mic-icon">
+              <img class="mic-off-icon" src="/room-notes/mic-off.svg" alt="" width="20" height="20">
+              <img class="mic-on-icon" src="/room-notes/mic-live.svg" alt="" width="20" height="20">
+            </span>
+            <div id="status" class="status" data-state="idle" role="status" aria-atomic="true">
+              <p class="mic-state">
+                <img class="mic-off-icon" src="/room-notes/dot-off.svg" alt="" width="9" height="9">
+                <img class="mic-on-icon" src="/room-notes/dot-live.svg" alt="" width="9" height="9">
+                <span id="mic-state-label">Mic off</span>
+              </p>
+              <p id="status-message">Room session is ready</p>
+            </div>
+          </div>
+          <div id="input-meter" class="input-meter" aria-hidden="true" hidden>
+            <span class="input-label">Input level</span>
+            <span class="meter-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          </div>
+          <button class="mic-action" id="start" type="button">
+            <img src="/room-notes/mic-start.svg" alt="" width="17" height="17">Turn on mic
+          </button>
+          <button class="mic-action" id="stop" type="button" hidden disabled>
+            <img src="/room-notes/mute-stop.svg" alt="" width="17" height="17">Turn off mic
+          </button>
+        </div>
+      </footer>
+    </main>
+    <dialog id="demo-dialog" aria-labelledby="demo-title">
+      <header class="demo-header">
+        <div>
+          <p class="eyebrow">Room Notes demo · 47 sec</p>
+          <h2 id="demo-title">Kopi Talk. Fact-Checked.</h2>
+        </div>
+        <form method="dialog">
+          <button class="guide-close" type="submit" aria-label="Close demo" autofocus>
+            <img src="/room-notes/guide-close.svg" alt="" width="17" height="17">
+          </button>
+        </form>
+      </header>
+      <p id="demo-message" class="demo-message" role="status" hidden></p>
+      <a id="demo-fallback" class="demo-fallback" href="/room-notes/kopi-talk.mp4" hidden>Open the MP4 directly</a>
+      <video id="demo-video" controls playsinline preload="none" poster="/room-notes/kopi-talk-poster.jpg" aria-label="Captioned Room Notes demo">
+        <a href="/room-notes/kopi-talk.mp4">Watch the MP4</a>
+      </video>
+    </dialog>
+    <dialog id="welcome-guide" aria-labelledby="guide-title" aria-describedby="guide-intro">
+      <form method="dialog" class="guide-content">
+        <div class="guide-header">
+          <span class="guide-mark"><img src="/room-notes/guide-check.svg" alt="" width="22" height="22"></span>
+          <button class="guide-close" type="submit" aria-label="Close Welcome Guide">
+            <img src="/room-notes/guide-close.svg" alt="" width="17" height="17">
+          </button>
+        </div>
+        <div class="guide-intro">
+          <p class="eyebrow">Welcome Guide</p>
+          <h2 id="guide-title">Welcome to Verity</h2>
+          <p id="guide-intro">Follow the facts as the room talks. Turn on the microphone when you’re ready.</p>
+        </div>
+        <ol class="guide-steps">
+          <li>
+            <span class="step-icon"><img src="/room-notes/guide-mic.svg" alt="" width="16" height="16"></span>
+            <div><strong>Turn on the mic</strong><p>Start the room session from the microphone bar.</p></div>
+          </li>
+          <li>
+            <span class="step-icon"><img src="/room-notes/guide-layers.svg" alt="" width="16" height="16"></span>
+            <div><strong>Read each check</strong><p>New claims appear at the top with a verdict and sources.</p></div>
+          </li>
+          <li>
+            <span class="step-icon"><img src="/room-notes/guide-voice.svg" alt="" width="16" height="16"></span>
+            <div><strong>Say “Verity” for an answer</strong><p>After the greeting, Verity speaks when you address it.</p></div>
+          </li>
+        </ol>
+        <div class="guide-footer">
+          <p>The mic stays off until you turn it on.</p>
+          <button class="guide-done" type="submit" autofocus>Got it</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
